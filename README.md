@@ -1,0 +1,1 @@
+This is my Master thesis project which results in a AI app to make a LLM from Open AI capable of answer specific questions about a topic. The model is able to access external data that hasn't seen during training, understand a user's question, exctract the information it needs to answer the user and return a comprehensive answer to the question of the user. 
