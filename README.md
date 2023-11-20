@@ -21,7 +21,6 @@
 - 📈 **Usage Instructions**
 - 📝 **Documentation**
 - 🛠 **Troubleshooting**
-- 🤝 **Contributing**
 - 📖 **References**
 
 
