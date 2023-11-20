@@ -1,3 +1,28 @@
-This is my Master thesis project which results in an AI app to make a LLM from Open AI capable of answer specific questions about a topic. The model is able to access external data that hasn't seen during training, understand a user's question, exctract the information it needs to answer the user and return a comprehensive answer to the question formulated by the user. 
+# Master Thesis Project: AI Application Using OpenAI's LLM
 
-For most of the packages to be installed, there's a requirements.txt file which can be used to install through pip. There's an exception for faiss-gpu which has been install through conda commad. Just write the command as follows to get it: conda install -c conda-forge faiss-gpu.
+## Overview
+🤖 This is my Master thesis project, which focuses on developing an AI application capable of answering specific questions about a topic. The core of this application is a Large Language Model (LLM) from OpenAI.
+
+### Features
+- 📚 **Access to External Data**: The model can pull in information it hasn't seen during its training phase.
+- 🧠 **Understanding User Queries**: It comprehends user questions in a nuanced manner.
+- 🔍 **Intelligent Information Extraction**: The AI can identify and extract the necessary information to formulate responses.
+- 💡 **Comprehensive Answers**: Users receive clear and detailed answers to their queries.
+
+## Installation
+🔧 For setting up the project, you'll need to install various packages.
+
+### Requirements
+- 📁 A `requirements.txt` file is included in the repository.
+- ⚙️ Use `pip` for installation: `pip install -r requirements.txt`
+- 🛠 If you find trouble installing faiss-gpu package, use the command **conda install -c conda-forge faiss-gpu**
+
+## [Other Sections]
+- 📈 **Usage Instructions**
+- 📝 **Documentation**
+- 🛠 **Troubleshooting**
+- 🤝 **Contributing**
+- 📖 **References**
+
+
+👩‍🎓 This markdown is part of my Master thesis documentation in AI and Machine Learning.
