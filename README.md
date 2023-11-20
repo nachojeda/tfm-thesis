@@ -1,1 +1,3 @@
 This is my Master thesis project which results in an AI app to make a LLM from Open AI capable of answer specific questions about a topic. The model is able to access external data that hasn't seen during training, understand a user's question, exctract the information it needs to answer the user and return a comprehensive answer to the question formulated by the user. 
+
+For most of the packages to be installed, there's a requirements.txt file which can be used to install through pip. There's an exception for faiss-gpu which has been install through conda commad. Just write the command as follows to get it: conda install -c conda-forge faiss-gpu.
