@@ -5,3 +5,7 @@ tiktoken
 faiss-cpu
 chroma
 PyPDF2
+transformers
+gradio
+sentence_transformers
+text_generation
