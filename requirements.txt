@@ -9,3 +9,5 @@ transformers
 gradio
 sentence_transformers
 text_generation
+llama_index
+torch
