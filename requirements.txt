@@ -11,3 +11,8 @@ sentence_transformers
 text_generation
 llama_index
 torch
+
+
+diffusers
+bitsandbytes==0.40.2
+cuda-python
