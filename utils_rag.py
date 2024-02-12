@@ -52,7 +52,7 @@ def respond(msg, pdf, temperature, max_tokens):
     embed_model = OpenAIEmbedding(model="text-embedding-ada-002", embed_batch_size=10)
 
     llm = OpenAI(
-        model="gpt-3.5-turbo-instruct",
+        model="gpt-3.5-turbo", #-instruct
         temperature=temperature,
         max_tokens=max_tokens,
         streaming=True)
@@ -71,22 +71,68 @@ def process_file(uploaded_file):
         filename = uploaded_file.name
         return filename
     return "No file uploaded."
+
+def update_file_input(choice):
+    # This function updates the file input component based on the choice
+    # For simplicity, this example doesn't directly upload the chosen file
+    # but updates the label to indicate which file is to be uploaded.
+    # You might need to adjust it to fit your actual file handling logic.
+    if choice == "file1.pdf":
+        return "Upload file1.pdf", True
+    elif choice == "file2.pdf":
+        return "Upload file2.pdf", True
+    else:
+        return "Upload a PDF file", False  # Default state
     
 def main():
-    with gr.Blocks(theme=theme) as demo: 
+    with gr.Blocks(theme=theme) as app: 
         gr.Markdown("# TFM: RAG App\U0001F50E") #\U0001F468\u200D\U0001F393
         gr.Markdown("This RAG app is designed to generate augmented responses from a PDF file which contains text.")
+        # with gr.Row():
+        #     pdf_dropdown = gr.Dropdown(label="Select a PDF file", choices=["Select a PDF", "pdf1.pdf", "pdf2.pdf", "pdf3.pdf"], value="Select a PDF")
+        #     file_upload = gr.File(label="Or upload a PDF file")
+            
+        # pdf_label = gr.Label()  # To display selected PDF.
+        # upload_label = gr.Label()  # To display uploaded file info.
+        
+        # pdf_dropdown.change(handle_pdf_or_upload, inputs=[pdf_dropdown, file_upload, pdf_label, upload_label], outputs=[pdf_label, upload_label])
+        # file_upload.change(handle_pdf_or_upload, inputs=[pdf_dropdown, file_upload, pdf_label, upload_label], outputs=[pdf_label, upload_label])
+        
 
         file_input = gr.File(
-            # value="C:/Users/Nacho/Documents/MASTER/TFM/tfm-thesis/attention-is-all-you-need.pdf",
+            value = "C:/Users/Nacho/Documents/MASTER/TFM/tfm-thesis/attention-is-all-you-need.pdf",
+            scale = 1,
+            label = "Upload a PDF file",
             file_types=[".pdf"],
-            every=process_file)
+            every=process_file
+        )
+
+        # files = [
+        #    "attention-is-all-you-need.pdf",
+        #     "Music Genre Classification A Comparative Study Between Deep Learning and Traditional Machine Learning Approaches.pdf"
+        # ]
+
+        # with gr.Row():
+        #     # Dropdown for selecting the file to upload
+        #     file_selector = gr.Dropdown(
+        #         choices=files,
+        #         label="Select a PDF file to upload"
+        #     )
         
-        output_label = gr.Textbox(visible=False)
+        #     # File input component, initially not showing any specific file choice
+        #     file_input = gr.File(
+        #         label="Upload a PDF file",
+        #         file_types=[".pdf"],
+        #         visible=False  # Initially hidden, shown after selection
+        #     )
 
-        file_input.change(process_file, inputs=file_input, outputs=output_label)
+        # file_selector.change(update_file_input, inputs=[file_selector], outputs=[file_input.label, file_input.visible])
 
-        msg = gr.Textbox(label="Prompt", value="What is the main topic in the text?")
+        # output_label = gr.Textbox(visible=False)
+
+        # file_input.change(process_file, inputs=file_input, outputs=output_label)
+
+        msg = gr.Textbox(label="Prompt", placeholder="Insert a query, for example: Elaborate on the transformer")
         with gr.Accordion(label="Advanced options",open=False):
             # temperature = gr.Slider(label="temperature", minimum=0.1, maximum=1.0, value=0.2, step=0.1, info="Regulates the creativity of the answers", visible=False)
             # max_tokens = gr.Slider(label="Max tokens", value=64, maximum=256, minimum=8, step=1, info="Regulates the length of the answers", visible=False)
@@ -95,15 +141,15 @@ def main():
                 label="Creativity",
                 interactive=True,
                 choices=[("None", 0),("Medium", 0.5),("High", 1)],
-                value=("None", 0),
+                value=0,
                 info="Regulates the creativity of the answers"
                 )
             length = gr.Radio(
                 label="Output length",
                 interactive=True,
-                choices=[("Short", 64), ("Medium", 512), ("Large", 1024)],
-                value=("Short", 64),
-                info="Regulates the length of the answers"
+                choices=[("Short", 32), ("Medium", 1024), ("Large", 2048)],
+                value=32,
+                info="Regulates the maximum length of the answers"
                 )
         
         completion = gr.Textbox(label="Response")
@@ -111,12 +157,12 @@ def main():
         btn = gr.Button("Submit", variant="primary")
         clear = gr.ClearButton(components=[msg, completion], value="Clear console", variant="stop")
         
-        btn.click(respond, inputs=[msg, output_label, creativity, length], outputs=[completion]) #, temperature, max_tokens
-        msg.submit(respond, inputs=[msg, output_label, creativity, length], outputs=[completion]) #, temperature, max_tokens
+        btn.click(respond, inputs=[msg, file_input, creativity, length], outputs=[completion]) #, temperature, max_tokens
+        msg.submit(respond, inputs=[msg, file_input, creativity, length], outputs=[completion]) #, temperature, max_tokens
 
         # completion.change(fn=test, inputs=stream_out)
 
-        gr.Markdown("\U0001F6E0Created by Ignacio Ojeda Sánchez ", header_links=True)
+        gr.Markdown("\U0001F6E0Developt by Ignacio Ojeda Sánchez ", header_links=True)
     gr.close_all()
-    demo.queue().launch(share=True)
-    print("\n\\U0001F468\u200D\U0001F393")
+    app.queue().launch(share=True)
+    print("\n\nFinished")
