@@ -1,0 +1,10 @@
+Tests the system's ability to identify the central subject or theme.
+Evaluates the system's summarization skills and understanding of major points.
+Checks the system's ability to identify and articulate main arguments or claims.
+Tests the system's ability to pick out and relay specific data points.
+Evaluates how well the system can extract and present examples or case studies.
+Tests understanding of the document’s conclusions or final thoughts.
+Checks the system's ability to identify conflicting information or areas of contention.
+Evaluates the system's recognition of context-setting information.
+Assesses the system's ability to recognize acknowledged limitations or gaps.
+Tests the system's comprehension of proposed future actions or recommendations.
